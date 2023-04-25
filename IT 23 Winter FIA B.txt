@@ -1,0 +1,181 @@
+Login as: nurmysql
+Using keyboard-interactive authentication.
+Password: 
+Login: Tue, 25 Apr 2023 11:15:11 +0200 from p57b89d4c.dip0.t-ipconnect.de
+ 
+The plugins included with the TinyShell system are free software;
+TinyShell is brought to you by Theis Mackeprang.
+You can download more plugins from TinyShell's homepage.
+ 
+TinyShell comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+ 
+Type 'help' to get started with TinyShell.
+ 
+nurmysql@server9.toolweb24.de:/var/www$ mysql --user=new -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ;
+Your MYSQL connection id is not static
+Server version: 5.5.62-0+deb8u1
+ 
+Type 'clear' to clear the buffer.
+ 
+mysql> USE new099;
+Database changed
+ 
+mysql> SELECT * FROM Kunde;
++--------------------------------------------------------------------------------------------+
+| KundeNr | Name               | Strasse               | Land | PLZ   | Ort                  |
++--------------------------------------------------------------------------------------------+
+| 2       | Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 3       | Ronja Berg         | Moerfelder Landstrase | DE   | 99999 | Frankfurt am Main    |
+| 4       | Nadine Francesca   | XXX                   | CH   | 8764  | Zug                  |
++--------------------------------------------------------------------------------------------+
+3 rows in set (0.00 sec)
+ 
+mysql> INSERT INTO Kunde SET 
+> Name='Emma Friese', 
+> Strasse='Finkwnweg 1', 
+> Land='GB', 
+> PLZ='9999', 
+> Ort='Hannover';
+Query OK, 1 rows affected (0.04 sec)
+ 
+mysql> SELECT * FROM Kunde;
++--------------------------------------------------------------------------------------------+
+| KundeNr | Name               | Strasse               | Land | PLZ   | Ort                  |
++--------------------------------------------------------------------------------------------+
+| 2       | Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 3       | Ronja Berg         | Moerfelder Landstrase | DE   | 99999 | Frankfurt am Main    |
+| 4       | Nadine Francesca   | XXX                   | CH   | 8764  | Zug                  |
+| 5       | Emma Friese        | Finkwnweg 1           | GB   | 9999  | Hannover             |
++--------------------------------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+ 
+mysql> DESC Kunde;
++----------------------------------------------------------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++----------------------------------------------------------------+
+| KundeNr | int(6)       | NO   | PRI | NULL    | auto_increment |
+| Name    | varchar(100) | YES  |     | NULL    |                |
+| Strasse | varchar(100) | YES  |     | NULL    |                |
+| Land    | char(2)      | YES  |     | NULL    |                |
+| PLZ     | char(5)      | YES  |     | NULL    |                |
+| Ort     | varchar(100) | YES  |     | NULL    |                |
++----------------------------------------------------------------+
+6 rows in set (0.00 sec)
+ 
+mysql> SELECT Name, Strasse, Land FROM Kunde WHERE Land <> 'DE';
++---------------------------------------+
+| Name             | Strasse     | Land |
++---------------------------------------+
+| Nadine Francesca | XXX         | CH   |
+| Emma Friese      | Finkwnweg 1 | GB   |
++---------------------------------------+
+2 rows in set (0.00 sec)
+ 
+mysql> SELECT Name, Strasse, Land FROM Kunde WHERE Land = 'DE';
++---------------------------------------------------+
+| Name               | Strasse               | Land |
++---------------------------------------------------+
+| Matthias Brinkmann | Unterer Markt 11      | DE   |
+| Ronja Berg         | Moerfelder Landstrase | DE   |
++---------------------------------------------------+
+2 rows in set (0.00 sec)
+ 
+mysql> SELECT Name, Strasse, Land, PLZ FROM Kunde WHERE Land = 'DE';
++-----------------------------------------------------------+
+| Name               | Strasse               | Land | PLZ   |
++-----------------------------------------------------------+
+| Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 |
+| Ronja Berg         | Moerfelder Landstrase | DE   | 99999 |
++-----------------------------------------------------------+
+2 rows in set (0.00 sec)
+ 
+mysql> SELECT Name, Strasse, Land, PLZ FROM Kunde WHERE Land = 'DE' AND PLZ='91284';
++------------------------------------------------------+
+| Name               | Strasse          | Land | PLZ   |
++------------------------------------------------------+
+| Matthias Brinkmann | Unterer Markt 11 | DE   | 91284 |
++------------------------------------------------------+
+1 row in set (0.00 sec)
+ 
+mysql> USE new024;
+Database changed
+ 
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_new024 |
++------------------+
+| Kunde            |
++------------------+
+1 row in set (0.00 sec)
+ 
+mysql> SELECT * FROM Kunde;
++----------------------------------------------------------------------------------+
+| KundeNr | Name        | Strasse          | Land | PLZ   | Ort                    |
++----------------------------------------------------------------------------------+
+| 1       | Matthias    | Unterer Markt 11 | DE   | 91285 | Neuhaus an der Pegnitz |
+| 2       | Emma Friese | Finkenweg 1      | DE   | 99999 | Hannover               |
++----------------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+ 
+mysql> USE new099;
+Database changed
+ 
+mysql> SELECT Name, Strasse, Land, PLZ FROM Kunde WHERE Land = 'DE' OR PLZ='91284';
++-----------------------------------------------------------+
+| Name               | Strasse               | Land | PLZ   |
++-----------------------------------------------------------+
+| Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 |
+| Ronja Berg         | Moerfelder Landstrase | DE   | 99999 |
++-----------------------------------------------------------+
+2 rows in set (0.00 sec)
+ 
+mysql> 
+ERROR 1065: Query was empty (0.00 sec)
+ 
+mysql> SELECT * FROM Kunde; SELECT * FROM Kunde WHERE Land='DE';
++--------------------------------------------------------------------------------------------+
+| KundeNr | Name               | Strasse               | Land | PLZ   | Ort                  |
++--------------------------------------------------------------------------------------------+
+| 2       | Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 3       | Ronja Berg         | Moerfelder Landstrase | DE   | 99999 | Frankfurt am Main    |
+| 4       | Nadine Francesca   | XXX                   | CH   | 8764  | Zug                  |
+| 5       | Emma Friese        | Finkwnweg 1           | GB   | 9999  | Hannover             |
++--------------------------------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+ 
++--------------------------------------------------------------------------------------------+
+| KundeNr | Name               | Strasse               | Land | PLZ   | Ort                  |
++--------------------------------------------------------------------------------------------+
+| 2       | Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 3       | Ronja Berg         | Moerfelder Landstrase | DE   | 99999 | Frankfurt am Main    |
++--------------------------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+ 
+mysql> UPDATE Kunde SET Name='Ronja Brinkmann' 
+> WHERE KundeNr=3;
+Query OK, 1 rows affected (0.05 sec)
+ 
+mysql> SELECT * FROM Kunde;
++--------------------------------------------------------------------------------------------+
+| KundeNr | Name               | Strasse               | Land | PLZ   | Ort                  |
++--------------------------------------------------------------------------------------------+
+| 2       | Matthias Brinkmann | Unterer Markt 11      | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 3       | Ronja Brinkmann    | Moerfelder Landstrase | DE   | 99999 | Frankfurt am Main    |
+| 4       | Nadine Francesca   | XXX                   | CH   | 8764  | Zug                  |
+| 5       | Emma Friese        | Finkwnweg 1           | GB   | 9999  | Hannover             |
++--------------------------------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+ 
+mysql> UPDATE Kunde SET 'Hangover' WHERE Ort='Hannover';
+ERROR 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Hangover' WHERE Ort='Hannover'' at line 1 (0.00 sec)
+ 
+mysql> UPDATE Kunde SET Ort='Hangover' WHERE Ort='Hannover';
+Query OK, 1 rows affected (0.04 sec)
+ 
+mysql> DELETE FROM Kunde WHERE KundeNr=2;
+Query OK, 1 rows affected (0.06 sec)
+ 
+mysql>  
