@@ -1,0 +1,33 @@
+CREATE TABLE datKunde
+(KundeID INT(10) NOT NULL PRIMARY KEY auto_increment,
+ Name VARCHAR(100) NOT NULL,
+ Strasse VARCHAR(100) NULL,
+ Land CHAR(2) NULL,
+ PLZ CHAR(5) NOT NULL,
+ Ort VARCHAR(100) NULL
+);
+
+CREATE TABLE datRechnung
+(RechnungID INT(10) NOT NULL PRIMARY KEY auto_increment,
+ Rechnungsdatum DATE NULL,
+ Lieferdatum DATE NULL,
+ KundeID INT(10) NOT NULL,
+ MitarbeiterID INT(5) NOT NULL
+);
+
+CREATE TABLE datPosition 
+(PositionID INT(11) NOT NULL PRIMARY KEY auto_increment,
+ RechnungID INT(10) NOT NULL,
+ ArtikelID INT(10) NOT NULL,
+ Menge DECIMAL(10,2) default 0.0
+);
+
+CREATE TABLE coArtikel 
+(ArtikelID INT(10) NOT NULL PRIMARY KEY auto_increment,
+ Bezeichnung VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE coMitarbeiter
+(MitarbeiterID INT(5) NOT NULL PRIMARY KEY auto_increment,
+ Name VARCHAR(100) NOT NULL
+);

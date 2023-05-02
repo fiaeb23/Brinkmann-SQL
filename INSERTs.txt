@@ -1,0 +1,15 @@
+mysql> INSERT INTO datKunde SET 
+>      Name='Matthias Brinkmann', 
+>      Strasse='Unterer Markt 11', 
+>      Land='DE', 
+>      PLZ='91284', 
+>      Ort='Neuhaus a.d. Pegnitz';
+Query OK, 1 rows affected (0.05 sec)
+ 
+mysql> INSERT INTO datKunde 
+>      (Name, Strasse, Land, PLZ, Ort) 
+>      VALUES 
+>      ('Emma Friese', 'Finkenweg', 'DE', '99999', 'Hannover'), 
+>      ('Ronja Berg', 'Landstrasse 1', 'DE', '88888', 'Porta Westfalica'), 
+>      ('Rebecca Brinkmann', 'Teststrasse 1', 'DE', '99999', 'Nürnberg');
+Query OK, 3 rows affected (0.05 sec)
