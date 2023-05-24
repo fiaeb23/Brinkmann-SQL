@@ -1,0 +1,5 @@
+-- Anlegen eines Foreign-Key-Constraints
+ALTER TABLE datPosition
+ADD CONSTRAINT FK_PositionRechnung 
+FOREIGN KEY (RechnungID) REFERENCES 
+datRechnung(RechnungID);
