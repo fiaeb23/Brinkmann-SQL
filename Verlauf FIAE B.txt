@@ -1,0 +1,104 @@
+mysql> USE new099;
+Database changed
+ 
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_new099 |
++------------------+
+| coArtikel        |
+| coMitarbeiter    |
+| datGartenarbeit  |
+| datKochrezepte   |
+| datKunde         |
+| datPosition      |
+| datRechnung      |
++------------------+
+7 rows in set (0.00 sec)
+ 
+mysql> DESC datKunde;
++----------------------------------------------------------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++----------------------------------------------------------------+
+| KundeID | int(10)      | NO   | PRI | NULL    | auto_increment |
+| Name    | varchar(100) | NO   |     | NULL    |                |
+| Strasse | varchar(100) | YES  |     | NULL    |                |
+| Land    | char(2)      | YES  |     | NULL    |                |
+| PLZ     | char(5)      | NO   |     | NULL    |                |
+| Ort     | varchar(100) | YES  |     | NULL    |                |
++----------------------------------------------------------------+
+6 rows in set (0.00 sec)
+ 
+mysql> SHOW CREATE TABLE datKunde;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                   |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| datKunde | CREATE TABLE `datKunde` (
+  `KundeID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Strasse` varchar(100) DEFAULT NULL,
+  `Land` char(2) DEFAULT NULL,
+  `PLZ` char(5) NOT NULL,
+  `Ort` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`KundeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3001 DEFAULT CHARSET=latin1 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+ 
+mysql> ALTER TABLE TABLE datKunde MODIFY 
+>      (PLZ INT(5) NULL default 0);
+ERROR 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE datKunde MODIFY
+     (PLZ INT(5) NULL default 0)' at line 1 (0.00 sec)
+ 
+mysql> ALTER TABLE TABLE datKunde MODIFY COLUMN 
+>      (PLZ INT(5) NULL default 0);
+ERROR 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE datKunde MODIFY COLUMN
+     (PLZ INT(5) NULL default 0)' at line 1 (0.00 sec)
+ 
+mysql> ALTER TABLE datKunde MODIFY COLUMN 
+>      (PLZ INT(5) NULL default 0);
+ERROR 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(PLZ INT(5) NULL default 0)' at line 2 (0.00 sec)
+ 
+mysql> ALTER TABLE datKunde MODIFY 
+>      (PLZ INT(5) NULL default 0);
+ERROR 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(PLZ INT(5) NULL default 0)' at line 2 (0.00 sec)
+ 
+mysql> ALTER TABLE datKunde MODIFY 
+>      PLZ INT(5) NULL default 0;
+Query OK, 16 rows affected (0.30 sec)
+ 
+mysql> SELECT * FROM datKunde;
++----------------------------------------------------------------------------------------+
+| KundeID | Name               | Strasse           | Land | PLZ   | Ort                  |
++----------------------------------------------------------------------------------------+
+| 1       | Emma Friese        | Rose Barracks     | DE   | 99999 | Hannover             |
+| 5       | Matthias Brinkmann | Unterer Markt 11  | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 1002    | Matthias Brinkmann | Unterer Markt 11  | DE   | 91284 | Neuhaus a.d. Pegnitz |
+| 1003    | Emma Friese        | Finkenweg         | DE   | 99999 | Hannover             |
+| 1004    | Ronja Berg         | Landstrasse 1     | DE   | 0     | Hannover             |
+| 1005    | Rebecca Brinkmann  | Teststrasse 1     | DE   | 99999 | Nürnberg             |
+| 1006    | Nadine Franco      | Teststrasse 1     | DE   | 99999 | Neumarkt i.d. Opf.   |
+| 1007    | Tim Taler          | An der Goldgrube  | DE   | 77777 | Goldkronach          |
+| 1008    | Melanie Spandl     | Keineahnungweg 99 | DE   | 99888 | Bindlach             |
+| 1009    | Betty Barclay      | Evergreen Terasse | US   | 87654 | Springfield          |
+| 1010    | Lina Herbst        | Pruppach 6        | DE   | 91284 | Königstein           |
+| 1011    | Matthias Brinkmann | Unterer Markt 11  | DE   | 87543 | Hof                  |
+| 1012    | Birigit Brinkmann  | Schmiedstrasse 1  | DE   | 99999 | Neumarkt             |
+| 1013    | Bernd Brinkmann    | Schmiedstrasse 1  | DE   | 99999 | Neumarkt             |
+| 2000    | Donald Duck        | NULL              | DE   | 0     | NULL                 |
+| 3000    | Daisy Duck         | NULL              | DE   | 0     | NULL                 |
++----------------------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+ 
+mysql> UPDATE datKunde SET 
+>      Strasse='Bergstrasse', 
+>      PLZ='55555', 
+>      Ort='Bayreuth' 
+>      WHERE Kunde IN (1012, 1013);
+ERROR 1054: Unknown column 'Kunde' in 'where clause' (0.00 sec)
+ 
+mysql> UPDATE datKunde SET 
+>      Strasse='Bergstrasse', 
+>      PLZ='55555', 
+>      Ort='Bayreuth' 
+>      WHERE KundeID IN (1012, 1013);
+Query OK, 2 rows affected (0.06 sec)
