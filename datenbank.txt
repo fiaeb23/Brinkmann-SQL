@@ -1,0 +1,72 @@
+http://server9.toolweb24.de/shell/
+http://server9.toolweb24.de/phpmyadmin/
+
+https://www.a-coding-project.de/ratgeber/mysql/befehle
+https://www.w3schools.com/sql/sql_injection.asp
+
+nurmysql
+IBBshellX!
+
+mysql --user=new -p 
+new
+
+use new025
+
+show tables 			/vorhande Tabellen (Name) anzeigen 
+
+SELECT * FROM Kunde 		/Tabelle anzeigen
+
+INSERT INTO Kunde SET 		/kunde anlegen 
+bsp. Name='NAME',
+
+
+INSERT INTO Kunde (Name, Strasse) VALUES ('Matthias', 'Unterer Markt'), ('Jutta', 'Emil-Strasse'););
+/mehrere Kunden anlegen
+
+
+INSERT INTO Kunde (Name, Strasse, Land, PLZ, Ort) VALUES 
+('Matthias Möller', 'Unterer Markt', 'DE', '41279', 'Franken'), 
+('Jutta Haan', 'Emil-Strasse', 'DE', '32456', 'Hannover'), 
+('John Legend', 'Breakdownstreet 25', 'GB', '10101', 'London');
+('Sina Marc', 'Main Street', 'GB', '10122', 'London');
+('Pauline Alderson', 'Ouranio 12', 'GR', '84115', 'Athen');
+
+
+SELECT Name, Strasse, Land FROM Kunde WHERE Land <> 'DE'; 		/Suchfunktion
+SELECT Name, Strasse, Land FROM Kunde WHERE Land ='DE' AND PLZ='58313'; 
+
+
+UPDATE Kunde SET 		/Update Befehl 
+bsp. Name='Amelie Bernard', 	/Spalte die geändert werden soll und zu was
+where KundenNr=3;           	/ Wo (Welche Zeile) geändert werden soll
+
+
+Kardinalität
+1 = primary Key
+n = unendlich Zahlen/Variablen möglich
+
+
+ALTER TABLE datPosition 
+ADD (
+    PositionID int,
+    RechnungID varchar(255),
+    ArtikelID varchar(255),
+    PreisID varchar(255)
+);
+
+ALTER TABLE datPosition
+DROP COLUMN PositionID;
+
+
+
+
+
+
+mysql> INSERT INTO datPosition (PositionID int,
+    RechnungID varchar(255),
+    ArtikelID varchar(255),
+    PreisID varchar(255)
+);
+
+
+ SELECT * FROM datRechnung (
