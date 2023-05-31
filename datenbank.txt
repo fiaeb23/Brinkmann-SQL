@@ -59,9 +59,6 @@ DROP COLUMN PositionID;
 
 
 
-
-
-
 mysql> INSERT INTO datPosition (PositionID int,
     RechnungID varchar(255),
     ArtikelID varchar(255),
@@ -69,4 +66,22 @@ mysql> INSERT INTO datPosition (PositionID int,
 );
 
 
- SELECT * FROM datRechnung (
+SELECT * FROM datRechnung
+
+ALTER TABLE datPosition
+ADD CONSTRAINT FK_PositionRechnung
+FOREIGN KEY (RechnungID) REFERENCES
+datRechnung(RechnungID) 
+
+
+//sortiert aufsteigend nach der "RechnungID" und dann nach der "PositionID"
+SELECT *
+FROM datPosition
+ORDER BY RechnungID ASC, PositionID ASC;
+
+
+
+SELECT K.KundeID, R.RechnungID, K.Name 
+>      FROM datKunde AS K 
+>      LEFT JOIN datRechnung AS R 
+>      ON R.KundeID=K.KundeID;
