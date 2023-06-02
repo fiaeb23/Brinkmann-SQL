@@ -15,6 +15,17 @@ use new025
 show tables 			/vorhande Tabellen (Name) anzeigen 
 
 SELECT * FROM Kunde 		/Tabelle anzeigen
+SELECT * FROM datRechnung
+
+
+
+CREATE TABLE TestTabelle (
+    istCHARACTER int,
+    TestID varchar(255),
+    PersonID varchar(255),
+    Name varchar(255)
+);
+
 
 INSERT INTO Kunde SET 		/kunde anlegen 
 bsp. Name='NAME',
@@ -28,22 +39,35 @@ INSERT INTO Kunde (Name, Strasse, Land, PLZ, Ort) VALUES
 ('Matthias Möller', 'Unterer Markt', 'DE', '41279', 'Franken'), 
 ('Jutta Haan', 'Emil-Strasse', 'DE', '32456', 'Hannover'), 
 ('John Legend', 'Breakdownstreet 25', 'GB', '10101', 'London');
-('Sina Marc', 'Main Street', 'GB', '10122', 'London');
-('Pauline Alderson', 'Ouranio 12', 'GR', '84115', 'Athen');
+
+
+INSERT INTO TestTabelle (istCHARACTER, TestID, PersonID, istBOOL, istDECIMAL, istDOUBLE, istINTEGER, istDATE) 
+> VALUES 
+>     (0, '456', 'Person2', 0, 12.3, 5.25, 250, '2023-05-25');
+
+
 
 
 SELECT Name, Strasse, Land FROM Kunde WHERE Land <> 'DE'; 		/Suchfunktion
 SELECT Name, Strasse, Land FROM Kunde WHERE Land ='DE' AND PLZ='58313'; 
 
 
+
+
 UPDATE Kunde SET 		/Update Befehl 
 bsp. Name='Amelie Bernard', 	/Spalte die geändert werden soll und zu was
 where KundenNr=3;           	/ Wo (Welche Zeile) geändert werden soll
+
+UPDATE TestTabelle 
+> SET TestID = '123' 
+> WHERE TestID = 'ABC123';
 
 
 Kardinalität
 1 = primary Key
 n = unendlich Zahlen/Variablen möglich
+
+
 
 
 ALTER TABLE datPosition 
@@ -59,19 +83,13 @@ DROP COLUMN PositionID;
 
 
 
-mysql> INSERT INTO datPosition (PositionID int,
-    RechnungID varchar(255),
-    ArtikelID varchar(255),
-    PreisID varchar(255)
-);
-
-
-SELECT * FROM datRechnung
-
 ALTER TABLE datPosition
 ADD CONSTRAINT FK_PositionRechnung
 FOREIGN KEY (RechnungID) REFERENCES
 datRechnung(RechnungID) 
+
+
+
 
 
 //sortiert aufsteigend nach der "RechnungID" und dann nach der "PositionID"
@@ -85,3 +103,4 @@ SELECT K.KundeID, R.RechnungID, K.Name
 >      FROM datKunde AS K 
 >      LEFT JOIN datRechnung AS R 
 >      ON R.KundeID=K.KundeID;
+
