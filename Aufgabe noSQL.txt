@@ -1,0 +1,6 @@
+Recherche zum Thema "noSQL-Datenbanken":
+
+- Welche Arten gibt es?
+- Wofür steht das "no"?
+- Welchen Vorteil bieten diese Datenbanken?
+- Was sind typische Einsatzzwecke?
