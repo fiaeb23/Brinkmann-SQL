@@ -1,0 +1,22 @@
+select - join - funktionen
+PK - FK - FK & FK constraint unterschiede (referenz - kontrolle der Referenz - 
+was macht ein JOIN
+insert/update/deleted 
+count/sum/average
+left - right - upper 
+RBDMS unterschied zu Server
+RI Diagramm 
+transitive abhänigkeit
+view (anschauen/abfrage mit ergebnis/datenmenge zurück) 
+stored procedures (daten ablegen/funktion die in der datenbank gespeichert ist/ rückgabe nur verfügbar oder nicht)
+trigger (automatische erstellung mit einem shortcut)
+
+nicht:
+keine berechtigungen 
+
+
+infos: Abschlussprüfung Sommer 2022 1- Belegsatz
+
+
+
+upper, count,sum,avg,min,max, round,abs, left/right, insert,deleted, ER-Model
